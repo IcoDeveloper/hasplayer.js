@@ -1600,6 +1600,12 @@ MediaPlayer.PUBLIC_EVENTS = {
     'manifestUrlUpdate': 'hasplayer',
 
     /**
+     * The manifestLoaded event is fired when a manifest has finished loading,
+     * TBD
+     */
+    'manifestLoaded': 'hasplayer',
+
+     /**
      * The metricAdded event is fired when a new metric has been added,
      * TBD
      */
