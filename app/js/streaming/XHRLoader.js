@@ -26,6 +26,7 @@ MediaPlayer.dependencies.XHRLoader = function() {
         _retryCount = 0,
         _retryTimeout = null,
         _deferred = null,
+        _withCredentials = false,
 
         _abort = function() {
 
@@ -92,6 +93,7 @@ MediaPlayer.dependencies.XHRLoader = function() {
 
             try {
                 _xhr = new XMLHttpRequest();
+                _xhr.withCredentials = _withCredentials;
                 _xhr.open("GET", _url, true);
 
                 if (_responseType) {
@@ -119,11 +121,12 @@ MediaPlayer.dependencies.XHRLoader = function() {
 
     return {
 
-        initialize: function(responseType, retryAttempts, retryInterval, onprogress) {
+        initialize: function(responseType, retryAttempts, retryInterval, onprogress, withCredentials) {
             _responseType = responseType;
             _retryAttempts = retryAttempts;
             _retryInterval = retryInterval;
             _onprogress = onprogress;
+            _withCredentials = withCredentials;
         },
 
         load: function(url, range) {

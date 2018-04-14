@@ -18,6 +18,7 @@ MediaPlayer.dependencies.FragmentLoader = function() {
         DEFAULT_RETRY_INTERVAL = 500,
         retryAttempts = DEFAULT_RETRY_ATTEMPTS,
         retryInterval = DEFAULT_RETRY_INTERVAL,
+        withCredentials = false,
         retryCount = 0,
         xhrs = [],
         type,
@@ -26,6 +27,7 @@ MediaPlayer.dependencies.FragmentLoader = function() {
             var req = new XMLHttpRequest(),
                 isSuccessful = false;
 
+			req.withCredentials = withCredentials;
             req.open("HEAD", request.url, true);
 
             req.onload = function() {
@@ -55,6 +57,7 @@ MediaPlayer.dependencies.FragmentLoader = function() {
                 lastTraceTime = null,
                 self = this;
 
+            req.withCredentials = withCredentials;	
             xhrs.push(req);
             request.requestStartDate = new Date();
 
@@ -268,6 +271,7 @@ MediaPlayer.dependencies.FragmentLoader = function() {
         setup: function() {
             retryAttempts = this.config.getParam("FragmentLoader.RetryAttempts", "number", DEFAULT_RETRY_ATTEMPTS);
             retryInterval = this.config.getParam("FragmentLoader.RetryInterval", "number", DEFAULT_RETRY_INTERVAL);
+            withCredentials = this.config.getParam("withCredentials", "boolean", false);
         },
 
         setType: function (value) {

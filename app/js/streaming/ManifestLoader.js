@@ -19,6 +19,7 @@ MediaPlayer.dependencies.ManifestLoader = function() {
         _retryAttempts = DEFAULT_RETRY_ATTEMPTS,
         _retryInterval = DEFAULT_RETRY_INTERVAL,
         _xhrLoader = null,
+        _withCredentials = false,
 
         _getDecodedResponseText = function(text) {
             var fixedCharCodes = '',
@@ -77,7 +78,7 @@ MediaPlayer.dependencies.ManifestLoader = function() {
                 self = this;
 
             _xhrLoader = new MediaPlayer.dependencies.XHRLoader();
-            _xhrLoader.initialize(null, _retryAttempts, _retryInterval);
+            _xhrLoader.initialize(null, _retryAttempts, _retryInterval, null, _withCredentials);
             _xhrLoader.load(url).then(
                 function (request) {
 
@@ -172,6 +173,7 @@ MediaPlayer.dependencies.ManifestLoader = function() {
         setup: function() {
             _retryAttempts = this.config.getParam("ManifestLoader.RetryAttempts", "number", DEFAULT_RETRY_ATTEMPTS);
             _retryInterval = this.config.getParam("ManifestLoader.RetryInterval", "number", DEFAULT_RETRY_INTERVAL);
+            _withCredentials = this.config.getParam("withCredentials", "boolean", false);
         },
 
         load: _load,

@@ -81,7 +81,7 @@ Hls.dependencies.HlsFragmentController = function () {
             this.debug.log("[HlsFragmentController]", "Load decryption key: " + decryptionInfo.uri);
             var xhr = new MediaPlayer.dependencies.XHRLoader();
             // Do not retry for encrypted key, we assume the key file has to be present if playlist if present
-            xhr.initialize('arraybuffer', 0, 0);
+            xhr.initialize('arraybuffer', 0, 0, null, false);
             xhr.load(decryptionInfo.uri).then(
                 function (request) {
                     decryptionInfo.key = new Uint8Array(request.response);

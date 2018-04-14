@@ -415,7 +415,7 @@ Hls.dependencies.HlsParser = function() {
 
             this.debug.log("[HlsParser]", "Load playlist manifest: " + representation.url);
             xhrLoader = new MediaPlayer.dependencies.XHRLoader();
-            xhrLoader.initialize('text', retryAttempts, retryInterval);
+            xhrLoader.initialize('text', retryAttempts, retryInterval, null, false);
             xhrLoader.load(representation.url).then(
                 function (request) {
                     if (parsePlaylist.call(self, request.response, representation, adaptation)) {

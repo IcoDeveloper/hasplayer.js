@@ -52,6 +52,7 @@ MediaPlayer.utils.Config = function () {
             "Protection.licensePersistence": -1,
             // Other parameters
             "backoffSeekToEnd" : 2,
+            "withCredentials": false,
             // Video parameters
             "video": {
             },
